@@ -1,0 +1,8 @@
+<div *ngIf = "storyList">
+    <div *ngFor = "let story of storyList; let i =index">
+        <p><b>{{i+1}}. </b> {{story.title}} <br>
+            {{story.totalPoints}} points by {{story.authorName}} at {{story.date}} | 0 comments
+        </p>
+    </div>
+</div>
+<!-- <button (click)="receiveStories()">Click me</button> -->
