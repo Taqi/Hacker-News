@@ -41,10 +41,10 @@ export class StoryService implements IStoryService {
           //newStory.comments = response
           //console.log(response.kids)
 
-          this.storyService.getComment(response.kids.toString()).subscribe((response: any) => 
-          {
-            console.log(response.text)
-          });
+          // this.storyService.getComment(response.kids.toString()).subscribe((response: any) => 
+          // {
+          //   console.log(response.text)
+          // });
 
           this.storyList.push(newStory);
         });
