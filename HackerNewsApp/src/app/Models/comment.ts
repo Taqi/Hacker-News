@@ -3,6 +3,6 @@ export class Comment
     commentID: string;
     message: string;
     authorName: string;
-    date: Date;
+    date: string;
     //comments: Comment[];
 }

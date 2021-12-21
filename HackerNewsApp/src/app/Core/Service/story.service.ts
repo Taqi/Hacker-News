@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { StoryApiService } from 'src/app/Api/Service/story-api.service';
 import { Story } from 'src/app/Models/story';
+import { Comment } from 'src/app/Models/comment';
 import { IStoryService } from '../Interface/IStoryService';
 
 @Injectable({
@@ -11,11 +12,14 @@ import { IStoryService } from '../Interface/IStoryService';
 export class StoryService implements IStoryService {
 
   storyList: Story[]
+  commentList: Comment[]
 
   constructor(private storyService: StoryApiService) 
   { 
     this.storyList = [];
+    this.commentList = [];
     this.subscribeToStories();
+    //this.subscribeToComments();
   }
 
   subscribeToStories()
@@ -35,18 +39,26 @@ export class StoryService implements IStoryService {
           newStory.storyID = response.id;
           newStory.title = response.title;
           newStory.authorName = response.by;
-          newStory.date = response.time;
           newStory.totalPoints = response.score;
           newStory.selfUrl = response.url;
-          //newStory.comments = response
-          //console.log(response.kids)
+          newStory.commentsID = response.kids;
+          const date = new Date(response.time*1000);
+          newStory.date = date.toLocaleDateString();
 
-          // this.storyService.getComment(response.kids.toString()).subscribe((response: any) => 
+          // commentIDs.forEach((id: number) => 
           // {
-          //   console.log(response.text)
+          //   this.storyService.getComment(id.toString()).subscribe((response: any) => 
+          //   {
+          //     //console.log(response.text)
+          //     newStory.comments = response.text;
+          //   });
+            
           // });
 
+
+
           this.storyList.push(newStory);
+          //this.subscribeToComments()
         });
       });
     });
@@ -60,10 +72,60 @@ export class StoryService implements IStoryService {
     //   })
 
   }
+
+  // subscribeToComments()
+  // {
+  //   this.storyList.forEach((story, index) =>
+  //   {
+  //     let commentList: Comment[]
+
+  //     story.commentsID.forEach(ID =>
+  //       {
+  //         this.storyService.getComment(ID.toString()).subscribe((response: any) =>
+  //         {
+  //           let newComment = new Comment();
+  //           newComment.commentID = response.id;
+  //           newComment.authorName = response.by;
+  //           newComment.message = response.text;
+  //           const date = new Date(response.time*1000);
+  //           newComment.date = date.toLocaleDateString();
+
+  //           commentList.push(newComment)
+  //         })
+  //       })
+  //       //this.storyList[index].comments = commentList;
+  //   })
+  // }
   
   getStories(): Observable<Story[]> 
   {
     return of(this.storyList);
+  }
+  
+  subscribeToComments(story: Story)
+  {
+    story.commentsID.forEach(ID =>
+      {
+        this.storyService.getComment(ID.toString()).subscribe((response: any) =>
+        {
+          let newComment = new Comment();
+          newComment.commentID = response.id;
+          newComment.authorName = response.by;
+          newComment.message = response.text;
+          const date = new Date(response.time*1000);
+          newComment.date = date.toLocaleDateString();
+
+          this.commentList.push(newComment)
+          console.log(newComment)
+        })
+      })
+    //return of(this.commentList);
+  }
+
+  getCommentsOfStory(story: Story): Observable<Comment[]> 
+  {
+    this.subscribeToComments(story)
+    return of(this.commentList);
   }
 
 }
