@@ -2,7 +2,7 @@ export class Story
 {
   constructor(
 
-  public storyID: number,
+  public id: number,
   public title: string,
   public authorName: string,
   public date: number,

@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IStoryAPIService } from '../Interface/IStoryAPIService';
 import axios, { AxiosResponse } from "axios";
 import { Story } from 'src/app/Models/story';
 import { HttpClient } from '@angular/common/http';
-import { HNStory, HNComment } from '../Interface/HackerNewsApi';
+import { HNStory, HNComment } from './hn-story.model';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+
+export interface IStoryAPIService
+{
+    getStory(id: number): Observable<HNStory>;
+    getTopStoryIds(numberOfStories: number): Observable<number[]>;
+    getComment(id: string): Observable<HNComment>;
+}
 
 @Injectable({
   providedIn: 'root'

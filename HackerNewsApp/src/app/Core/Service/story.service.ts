@@ -1,58 +1,70 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { StoryApiService } from 'src/app/Api/Service/story-api.service';
+import { forkJoin, Observable, of } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
+import { StoryApiService } from 'src/app/Api/Service/hn-story-api.service';
 import { Story } from 'src/app/Models/story';
 import { Comment } from 'src/app/Models/comment';
 import { IStoryService } from '../Interface/IStoryService';
-import { HNStory } from 'src/app/Api/Interface/HackerNewsApi';
+import { HNStory } from 'src/app/Api/Service/hn-story.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StoryService implements IStoryService {
+  storyList: Story[];
+  hnStoryList: HNStory[];
+  commentList: Comment[];
 
-  storyList: Story[]
-  hnStoryList: HNStory[]
-  commentList: Comment[]
-
-  constructor(private storyApi: StoryApiService) 
-  { 
+  constructor(private storyApi: StoryApiService) {
     this.storyList = [];
     this.hnStoryList = [];
     this.commentList = [];
   }
 
-  getStories(): Observable<Story[]> 
-  {
+  getStories(): Observable<Story[]> {
     //Get the stories from backend
     const storyIds$ = this.storyApi.getTopStoryIds(5);
-    const hnStories$ = storyIds$.pipe(mergeMap((ids) => 
-      ids.map((id) => 
-        this.storyApi.getStory(id)))) //This is an observable of HNStory, but need to return an array of HNStory instead
-    
+    const hnStories$ = storyIds$.pipe(
+      mergeMap((ids) => {
+        const stories$ = ids.map((id) => this.storyApi.getStory(id));
+        return forkJoin(stories$);
+      })
+    ); //This is an observable of HNStory, but need to return an array of HNStory instead
+
     //We have an observable of an observable of a hnStory, but we should have an observable of an array of hnStory
 
     //Cast/map the HNStory to Story
-     const stories$ = hnStories$.pipe(map((hnStories) => hnStories.map((hnStory: { id: number; title: string; by: string; time: number; score: number; url: string; }) => new Story(hnStory.id, hnStory.title, hnStory.by, hnStory.time, hnStory.score, hnStory.url))));
-     return stories$;
-    
-    //return of(this.storyList);
+    const stories$ = hnStories$.pipe(
+      map((hnStories) =>
+        hnStories.map(
+          (hnStory: HNStory) =>
+            new Story(
+              hnStory.id,
+              hnStory.title,
+              hnStory.by,
+              hnStory.time,
+              hnStory.score,
+              hnStory.url
+            )
+        )
+      )
+    );
+    return stories$;
   }
 
   // private subscribeToStories()
   // {
-  //   this.storyApi.getTopStoryIds().subscribe((response: number[]) => 
+  //   this.storyApi.getTopStoryIds().subscribe((response: number[]) =>
   //   {
   //     //Only take first 5 stories
-  //     let topStoriesID = response.slice(0, 5); 
+  //     let topStoriesID = response.slice(0, 5);
 
   //     //Get info for each story
-  //     topStoriesID.forEach((id: number) => 
+  //     topStoriesID.forEach((id: number) =>
   //     {
   //       let newStory = new Story();
 
-  //       this.storyApi.getStory(id.toString()).subscribe((response: any) => 
+  //       this.storyApi.getStory(id.toString()).subscribe((response: any) =>
   //       {
   //         newStory.storyID = response.id;
   //         newStory.title = response.title;
@@ -63,17 +75,15 @@ export class StoryService implements IStoryService {
   //         const date = new Date(response.time*1000);
   //         newStory.date = date.toLocaleDateString();
 
-  //         // commentIDs.forEach((id: number) => 
+  //         // commentIDs.forEach((id: number) =>
   //         // {
-  //         //   this.storyService.getComment(id.toString()).subscribe((response: any) => 
+  //         //   this.storyService.getComment(id.toString()).subscribe((response: any) =>
   //         //   {
   //         //     //console.log(response.text)
   //         //     newStory.comments = response.text;
   //         //   });
-            
+
   //         // });
-
-
 
   //         this.storyList.push(newStory);
   //         //this.subscribeToComments()
@@ -114,9 +124,7 @@ export class StoryService implements IStoryService {
   //       //this.storyList[index].comments = commentList;
   //   })
   // }
-  
 
-  
   // subscribeToComments(story: Story)
   // {
   //   story.commentsID.forEach(ID =>
@@ -137,10 +145,9 @@ export class StoryService implements IStoryService {
   //   //return of(this.commentList);
   // }
 
-  // getCommentsOfStory(story: Story): Observable<Comment[]> 
+  // getCommentsOfStory(story: Story): Observable<Comment[]>
   // {
   //   this.subscribeToComments(story)
   //   return of(this.commentList);
   // }
-
 }

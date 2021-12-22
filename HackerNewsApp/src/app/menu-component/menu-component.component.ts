@@ -13,7 +13,7 @@ export class MenuComponentComponent implements OnInit {
   storyList: Story[]
   commentList: Comment[]
 
-  constructor(private storyService: StoryService ) 
+  constructor(public storyService: StoryService ) 
   {
     this.storyList = [];
   }

@@ -1,9 +1,3 @@
 import { Observable } from "rxjs";
-import { HNStory, HNComment } from "./HackerNewsApi";
+import { HNStory, HNComment } from "../Service/hn-story.model";
 
-export interface IStoryAPIService
-{
-    getStory(id: number): Observable<HNStory>;
-    getTopStoryIds(numberOfStories: number): Observable<number[]>;
-    getComment(id: string): Observable<HNComment>;
-}
