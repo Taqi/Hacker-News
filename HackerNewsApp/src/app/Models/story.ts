@@ -8,8 +8,7 @@ export class Story
   public date: number,
   //public comment$s: Observable <Comment>[],
   public totalPoints: number,
-  public selfUrl: string){}
+  public selfUrl: string,
+  public commentsId: number[]){}
 
 }
-
-//research parameter property

@@ -1,11 +1,4 @@
-export interface HNBase
-{
-    by: string;
-    id: number;
-    time: number;
-    type: string;
-    kids?: number[];
-}
+import { HNBase } from "./hn-base.model";
 
 export interface HNStory extends HNBase
 {
@@ -13,10 +6,4 @@ export interface HNStory extends HNBase
     score: number;
     title: string;
     url: string;
-}
-
-export interface HNComment extends HNBase
-{
-    parent: number;
-    text: string;
 }

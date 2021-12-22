@@ -27,18 +27,16 @@ export class MenuComponentComponent implements OnInit {
   {
     this.storyService.getStories().subscribe(storyList =>
       {
-        console.log(this.storyList.length)
         this.storyList = storyList;
       })
   }
 
-  // receiveComments(story: Story)
-  // {
-  //   this.storyService.getCommentsOfStory(story).subscribe(commentList =>
-  //     {
-  //       this.commentList = commentList;
-  //       console.log(this.commentList[0])
-  //     })
-  // }
+  receiveComments(story: Story)
+  {
+    this.storyService.getComments(story).subscribe(commentList =>
+      {
+        this.commentList = commentList;
+      })
+  }
 
 }
