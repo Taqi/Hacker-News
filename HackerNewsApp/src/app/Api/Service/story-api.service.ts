@@ -4,35 +4,32 @@ import { IStoryAPIService } from '../Interface/IStoryAPIService';
 import axios, { AxiosResponse } from "axios";
 import { Story } from 'src/app/Models/story';
 import { HttpClient } from '@angular/common/http';
+import { HNStory, HNComment } from '../Interface/HackerNewsApi';
+import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoryApiService implements IStoryAPIService {
 
-  baseUrl: string = "https://hacker-news.firebaseio.com/v0/"
-  topStoriesUrl: string = `${this.baseUrl}topstories.json`
-  storyUrl: string = `${this.baseUrl}item/`
-
   constructor(private httpClient: HttpClient) 
   { 
   }
 
-  getStory(id: string): Observable<any>
+  getTopStoryIds(numberOfStories: number): Observable<number[]>
   {
-    return this.httpClient.get<any>(this.storyUrl + id + '.json');
+    return this.httpClient.get<number[]>(`${environment.topStoriesUrl}`).pipe(
+      map((resultingArray) => resultingArray.slice(0, numberOfStories))
+    );
   }
 
-  getStories(): Observable<number[]>
+  getStory(id: number): Observable<HNStory>
   {
-    return this.httpClient.get<number[]>(this.topStoriesUrl);
+    return this.httpClient.get<HNStory>(`${environment.BASE_ITEM_URL}/${id}.json`);
   }
 
-  getComments(subjectID: string): Observable<any[]> {
-    throw new Error('Method not implemented.');
-  }
-
-  getComment(id: string): Observable<any> {
-    return this.httpClient.get<any>(this.storyUrl + id + '.json');
+  getComment(id: string): Observable<HNComment> {
+    return this.httpClient.get<HNComment>(`${environment.BASE_ITEM_URL}/${id}.json`);
   }
 }

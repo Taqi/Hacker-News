@@ -1,9 +1,9 @@
 import { Observable } from "rxjs";
+import { HNStory, HNComment } from "./HackerNewsApi";
 
 export interface IStoryAPIService
 {
-    getStory(id: string): Observable<any>;
-    getStories(): Observable<number[]>;
-    getComments(subjectID: string): Observable<any[]>;
-    getComment(id: string): Observable<any>;
+    getStory(id: number): Observable<HNStory>;
+    getTopStoryIds(numberOfStories: number): Observable<number[]>;
+    getComment(id: string): Observable<HNComment>;
 }
