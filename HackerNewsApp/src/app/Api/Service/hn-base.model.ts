@@ -4,5 +4,5 @@ export interface HNBase
     id: number;
     time: number;
     type: string;
-    kids: number[];
+    kids: number[]; //Could be undefined so add '?'
 }

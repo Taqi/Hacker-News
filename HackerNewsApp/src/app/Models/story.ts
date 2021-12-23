@@ -9,6 +9,6 @@ export class Story
   //public comment$s: Observable <Comment>[],
   public totalPoints: number,
   public selfUrl: string,
-  public commentsId: number[]){}
+  public commentsId: number[]){} //Add '?'
 
 }

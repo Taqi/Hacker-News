@@ -47,10 +47,12 @@ export class StoryService implements IStoryService {
     return stories$;
   }
 
-  getComments(story: Story): Observable<Comment[]> 
+  getComments(storyID: number): Observable<Comment[]> 
   {
+    const story$ = this.storyApi.getStory(storyID);
+
     //Get observable of comments id
-    const commentIds$ = of(story.commentsId);
+    const commentIds$ = story$.pipe(map((story) => story.kids));
 
     //Get an observable of array of HNComment
     const hnComments$ = commentIds$.pipe(

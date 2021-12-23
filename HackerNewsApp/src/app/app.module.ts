@@ -4,15 +4,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { MenuComponentComponent } from './menu-component/menu-component.component';
+import { CommentComponent } from './comment/comment.component';
+import { StoryComponent } from './story/story.component';
+import { RouterModule, Routes } from '@angular/router';
+import { routing }        from './app.routing';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponentComponent
+    MenuComponentComponent,
+    CommentComponent,
+    StoryComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
