@@ -8,13 +8,17 @@ import { StoryComponent } from './story/story.component';
 import { RouterModule, Routes } from '@angular/router';
 import { routing }        from './app.routing';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LogoComponent } from './logo/logo.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommentComponent,
     StoryComponent,
-    NavbarComponent
+    NavbarComponent,
+    LogoComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

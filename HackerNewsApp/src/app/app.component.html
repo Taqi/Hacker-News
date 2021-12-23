@@ -1,5 +1,7 @@
 <!--Header-->
-<app-navbar [menuItems]= "headerItems"></app-navbar>
+<div class = "header">
+    <app-logo></app-logo> <app-navbar [menuItems]= "headerItems"></app-navbar>
+</div>
 
 <!-- main app container -->
 <div class="container-fluid">
@@ -7,4 +9,7 @@
 </div>
 
 <!--Footer-->
-<app-navbar [menuItems]="footerItems"></app-navbar>
+<div class = "footer">
+    <app-navbar [menuItems]="footerItems"></app-navbar>
+    <app-search></app-search>
+</div>

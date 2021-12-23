@@ -1,5 +1,6 @@
-<div class="header">
-    <span class="navbar-nav" *ngFor="let item of menuItems">
-        <a class="nav-item nav-link" href={{item.url}}> {{item.label}} |</a>
+<div class="flex-container">
+    <span *ngFor="let item of menuItems">
+        <p><a href={{item.url}}> {{item.label}} |</a></p>
     </span>
 </div>
+
