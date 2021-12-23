@@ -3,18 +3,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { MenuComponentComponent } from './menu-component/menu-component.component';
 import { CommentComponent } from './comment/comment.component';
 import { StoryComponent } from './story/story.component';
 import { RouterModule, Routes } from '@angular/router';
 import { routing }        from './app.routing';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponentComponent,
     CommentComponent,
-    StoryComponent
+    StoryComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

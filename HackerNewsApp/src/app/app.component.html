@@ -1,5 +1,10 @@
+<!--Header-->
+<app-navbar [menuItems]= "headerItems"></app-navbar>
 
 <!-- main app container -->
 <div class="container-fluid">
     <router-outlet></router-outlet>
 </div>
+
+<!--Footer-->
+<app-navbar [menuItems]="footerItems"></app-navbar>
