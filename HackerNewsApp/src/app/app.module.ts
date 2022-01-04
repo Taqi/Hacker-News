@@ -10,6 +10,7 @@ import { routing }        from './app.routing';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogoComponent } from './logo/logo.component';
 import { SearchComponent } from './search/search.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SearchComponent } from './search/search.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    routing
+    routing,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
