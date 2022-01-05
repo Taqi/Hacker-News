@@ -1,12 +1,9 @@
-<!-- <div *ngFor="let story of storyService.getStories() | async">
-{{story.id}}
-</div> -->
-
-<div *ngIf = "storyList">
-    <div *ngFor="let story of storyList; let i=index">
+<div class ="d-flex flex-column" *ngIf="storyList$">
+    <div class="p-2 bg-light" *ngFor="let story of storyList$ | async; let i=index">
         <p><b>{{i+1}}. </b> {{story.title}} <br>
-             {{story.totalPoints}} points by {{story.authorName}} posted on {{story.date}} | {{story.commentsId.length}} comments 
-        </p>
-        <button (click)="goToComments(story)">Show Comments</button> 
+            {{story.totalPoints}} points by {{story.authorName}} posted on {{story.date}} | {{story.commentsId.length}} comments 
+       </p>
+       <button (click)="goToComments(story)">Show Comments</button> 
     </div>
 </div>
+    

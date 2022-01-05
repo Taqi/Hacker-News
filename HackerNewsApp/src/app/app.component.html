@@ -1,15 +1,17 @@
 <!--Header-->
-<div class = "header">
-    <app-logo></app-logo> <app-navbar [menuItems]= "headerItems"></app-navbar>
-</div>
+<div class = "wrapper">
+    <div class = "header">
+        <app-logo></app-logo> <app-navbar [menuItems]= "headerItems"></app-navbar>
+    </div>
 
-<!-- main app container -->
-<div class="container-fluid">
-    <router-outlet></router-outlet>
-</div>
+    <!-- main app container -->
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
 
-<!--Footer-->
-<div class = "footer">
-    <app-navbar [menuItems]="footerItems"></app-navbar>
-    <app-search></app-search>
+    <!--Footer-->
+    <div class = "footer">
+        <app-navbar [menuItems]="footerItems"></app-navbar>
+        <app-search></app-search>
+    </div>
 </div>

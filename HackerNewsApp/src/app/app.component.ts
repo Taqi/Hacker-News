@@ -6,7 +6,7 @@ import { MenuItem } from './Models/menuItem';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class  AppComponent {
   title = 'HackerNewsApp';
   headerItems = [
     new MenuItem("new", "https://news.ycombinator.com/newest"), 

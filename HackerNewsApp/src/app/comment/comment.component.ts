@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { StoryService } from '../Core/Service/story.service';
 import { Comment } from '../Models/comment';
 
@@ -12,12 +13,14 @@ export class CommentComponent implements OnInit {
 
   commentList: Comment[]
   id: any //type string|null
+  commentList$: Observable<Comment[]>
 
   constructor(private storyService: StoryService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('storyID');
-    this.receiveComments();
+    this.commentList$ = this.storyService.getComments(this.id);
+    //this.receiveComments();
   }
 
   receiveComments()

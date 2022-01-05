@@ -1,5 +1,5 @@
-<div *ngIf = "commentList">
-    <div *ngFor="let comment of commentList;let i =index">
+<div class ="d-flex flex-column" *ngIf = "commentList$">
+    <div class="p-2" *ngFor="let comment of commentList$ | async; let i =index">
         <p><b>{{i+1}}. </b> By {{comment.authorName}} posted on {{comment.date}} <br>
             {{comment.message}}
         </p>
