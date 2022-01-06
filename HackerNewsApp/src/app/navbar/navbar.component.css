@@ -1,4 +1,8 @@
-.flex-container {
+.menu {
     display: flex;
     flex-wrap: wrap;
-  }
+}
+
+.item {
+  list-style-type: none;
+}

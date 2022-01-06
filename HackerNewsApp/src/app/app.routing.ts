@@ -8,7 +8,7 @@ const appRoutes: Routes = [
 
   { path: 'story/:storyID', component: CommentComponent},
   { path: 'story', component: StoryComponent},
-  { path: '', component: StoryComponent, pathMatch: 'full'},
+  { path: '', pathMatch: 'full', redirectTo:'story'},
   
 ];
 

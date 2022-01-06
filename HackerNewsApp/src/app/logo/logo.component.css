@@ -1,0 +1,10 @@
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.logo {
+  list-style-type: none;
+  font-size: 20px;
+  padding: 7.5px 10px 7.5px 0;
+}
