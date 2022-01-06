@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LogoComponent } from './logo/logo.component';
 import { SearchComponent } from './search/search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DateTransformPipe } from './pipes/date-transform.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     StoryComponent,
     NavbarComponent,
     LogoComponent,
-    SearchComponent
+    SearchComponent,
+    DateTransformPipe,
   ],
   imports: [
     BrowserModule,

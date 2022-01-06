@@ -5,6 +5,6 @@ export class Comment
     public id: number,
     public message: string,
     public authorName: string,
-    public date: number    
+    public date: Date    
     ) {}
 }

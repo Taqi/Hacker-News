@@ -36,7 +36,7 @@ export class StoryService implements IStoryService {
               hnStory.id,
               hnStory.title,
               hnStory.by,
-              hnStory.time,
+              new Date(hnStory.time * 1000), //Convert unix time to date
               hnStory.score,
               hnStory.url,
               hnStory.kids
@@ -72,7 +72,7 @@ export class StoryService implements IStoryService {
               hnComment.id,
               hnComment.text,
               hnComment.by,
-              hnComment.time
+              new Date(hnComment.time * 1000)
             )
         )
       )

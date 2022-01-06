@@ -5,7 +5,7 @@ export class Story
   public id: number,
   public title: string,
   public authorName: string,
-  public date: number,
+  public date: Date,
   //public comment$s: Observable <Comment>[],
   public totalPoints: number,
   public selfUrl: string,
