@@ -16,10 +16,10 @@ export class StoryService implements IStoryService {
   constructor(private storyApi: StoryApiService) {
   }
 
-  getStories(): Observable<Story[]> 
+  getStories(numberOfStories: number): Observable<Story[]> 
   {
     //Get the stories from backend
-    const storyIds$ = this.storyApi.getTopStoryIds(5);
+    const storyIds$ = this.storyApi.getTopStoryIds(numberOfStories);
     const hnStories$ = storyIds$.pipe(
       mergeMap((ids) => {
         const stories$ = ids.map((id) => this.storyApi.getStory(id));

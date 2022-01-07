@@ -24,12 +24,12 @@ export class StoryComponent implements OnInit {
   ngOnInit(): void 
   {
     //this.receiveStories();
-    this.storyList$ = this.storyService.getStories();
+    this.storyList$ = this.storyService.getStories(5);
   }
 
   receiveStories()
   {
-    this.storyService.getStories().subscribe(storyList =>
+    this.storyService.getStories(5).subscribe(storyList =>
       {
         this.storyList = storyList;
       })

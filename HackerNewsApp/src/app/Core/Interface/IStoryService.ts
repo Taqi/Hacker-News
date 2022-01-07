@@ -4,6 +4,6 @@ import { Comment } from "src/app/Models/comment";
 
 export interface IStoryService
 {
-    getStories(): Observable<Story[]>;
+    getStories(numberOfStories: number): Observable<Story[]>;
     getComments(storyID: number): Observable<Comment[]>;
 }

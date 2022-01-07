@@ -1,6 +1,6 @@
 <div class ="d-flex flex-column" *ngIf = "commentList$">
     <div class="p-2" *ngFor="let comment of commentList$ | async; let i =index">
-        <p><b>{{i+1}}. </b> By {{comment.authorName}} posted on {{comment.date}} <br>
+        <p><b>{{i+1}}. </b> By {{comment.authorName}} posted {{comment.date | dateTransform}} <br>
             {{comment.message}}
         </p>
         <a><u>reply</u></a>
