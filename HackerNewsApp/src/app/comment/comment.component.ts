@@ -23,12 +23,12 @@ export class CommentComponent implements OnInit {
     //this.receiveComments();
   }
 
-  receiveComments()
-  {
-    this.storyService.getComments(this.id).subscribe(commentList =>
-      {
-        this.commentList = commentList;
-      })
-  }
+  // receiveComments()
+  // {
+  //   this.storyService.getComments(this.id).subscribe(commentList =>
+  //     {
+  //       this.commentList = commentList;
+  //     })
+  // }
 
 }

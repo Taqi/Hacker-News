@@ -27,13 +27,13 @@ export class StoryComponent implements OnInit {
     this.storyList$ = this.storyService.getStories(5);
   }
 
-  receiveStories()
-  {
-    this.storyService.getStories(5).subscribe(storyList =>
-      {
-        this.storyList = storyList;
-      })
-  }
+  // receiveStories()
+  // {
+  //   this.storyService.getStories(5).subscribe(storyList =>
+  //     {
+  //       this.storyList = storyList;
+  //     })
+  // }
 
   goToComments(story: Story)
   {
