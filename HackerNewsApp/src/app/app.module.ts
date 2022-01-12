@@ -13,6 +13,7 @@ import { SearchComponent } from './search/search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DateTransformPipe } from './pipes/date-transform.pipe';
 import { CommentsLengthPipe } from './pipes/comments-length.pipe';
+import { StoryPointsPipe } from './pipes/story-points.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CommentsLengthPipe } from './pipes/comments-length.pipe';
     SearchComponent,
     DateTransformPipe,
     CommentsLengthPipe,
+    StoryPointsPipe,
   ],
   imports: [
     BrowserModule,
