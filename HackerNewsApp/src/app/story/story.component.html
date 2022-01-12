@@ -1,7 +1,7 @@
 <div class ="d-flex flex-column" *ngIf="storyList$">
     <div class="p-2 bg-light" *ngFor="let story of storyList$ | async; let i=index">
         <p>{{i+1}}. <b> {{story.title}} </b><br>
-            {{story.totalPoints}} points by {{story.authorName}} posted {{story.date | dateTransform}} | {{story.commentsId.length}} comments 
+            {{story.totalPoints}} points by {{story.authorName}} posted {{story.date | dateTransform}} | {{story.commentsId.length | commentsLength}}  
        </p>
        <button (click)="goToComments(story)">Show Comments</button> 
     </div>

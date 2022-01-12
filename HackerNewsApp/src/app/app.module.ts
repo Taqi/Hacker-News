@@ -12,6 +12,7 @@ import { LogoComponent } from './logo/logo.component';
 import { SearchComponent } from './search/search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DateTransformPipe } from './pipes/date-transform.pipe';
+import { CommentsLengthPipe } from './pipes/comments-length.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DateTransformPipe } from './pipes/date-transform.pipe';
     LogoComponent,
     SearchComponent,
     DateTransformPipe,
+    CommentsLengthPipe,
   ],
   imports: [
     BrowserModule,
